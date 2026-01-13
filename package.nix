@@ -16,6 +16,8 @@
 , cacert
 , bash
 , runtime ? "node"  # "node" or "bun"
+, nodeBinName ? "claude"
+, bunBinName ? "claude-bun"
 }:
 
 let
@@ -39,7 +41,7 @@ let
       runCmd = "${nodejs_22}/bin/node --no-warnings --enable-source-maps";
       nativeBuildInputs = [ nodejs_22 cacert ];
       description = "Claude Code (Node.js) - AI coding assistant in your terminal";
-      binName = "claude";
+      binName = nodeBinName;
     };
     bun = {
       pkg = bun;
@@ -48,7 +50,7 @@ let
       runCmd = "${bun}/bin/bun run";
       nativeBuildInputs = [ bun cacert ];
       description = "Claude Code (Bun) - AI coding assistant in your terminal";
-      binName = "claude-bun";
+      binName = bunBinName;
     };
   };
 
